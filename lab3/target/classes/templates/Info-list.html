@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>telephone exchanges</title>
+</head>
+<body>
+<div th:switch="${info}">
+  <h2 th:case="null">No info found</h2>
+  <div th:case="*">
+    <h2>telephone exchanges</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Address</th>
+        <th>Type</th>
+        <th>Model</th>
+        <th>Manufacturer</th>
+        <th>Last info adding date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="info : ${info}">
+        <td th:text="${info.id}"></td>
+        <td th:text="${info.address}"></td>
+        <td th:text="${info.typeof}"></td>
+        <td th:text="${info.model}"></td>
+        <td th:text="${info.mader}"></td>
+        <td th:text="${info.addingdate}"></td>
+        <td><a th:href="@{info-update/{id}(id=${info.id})}">Edit</a></td>
+        <td><a th:href="@{info-delete/{id}(id=${info.id})}">Delete</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a href="/info-create">Create new one</a></p>
+</div>
+</body>
+</html>
